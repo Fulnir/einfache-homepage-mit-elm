@@ -410,3 +410,80 @@ Dem zweiten Element unseres Tabtuples fügen wir nun einige Styles hinzu.
 ```Elm
 , tabs = ( [ text "Milk", text "Oranges" ], [Color.background (Color.color Color.Teal Color.S400)] )
 ```
+
+### Jetzt ohne Counterbeispiel
+
+Zwei Views. Für die Startseite und sie Aboutseite.
+
+```Elm
+viewBody : Model -> Html Msg
+viewBody model =
+    case model.selectedTab of
+        0 ->
+            viewStart model
+
+        1 ->
+            viewAbout model
+
+        _ ->
+            text "404"
+
+viewStart : Model -> Html Msg
+viewStart model =
+    div
+        [ style [ ( "padding", "2rem" ) ] ]
+        [ h1 [] [ text "Willkommen" ] 
+        
+        ]
+
+viewAbout : Model -> Html Msg
+viewAbout model =
+    div
+        [ style [ ( "padding", "2rem" ) ] ]
+        [ h1 [] [ text "Über" ] 
+        
+        ]
+```
+
+### Die Indexseite
+
+In `Main.elm` ändern wir die erste Ziele in `module MeineHomepage exposing (..)`. Danach
+änder wir den Dateinamen zu `MeineHomepage.elm`.
+
+Dann erzeugen wir die Datei `index.html` mit folgendem Inhalt.
+
+```html
+<!doctype html>
+<html>
+    <head>
+        <style>
+            body { background-color: rgb(44, 44, 44); color: white; }
+            img { border: 1px solid white; margin: 5px; }
+            .large { width: 500px; float: right; }
+            .selected { margin: 0; border: 6px solid #60b5cc; }
+            .content { margin: 40px auto; width: 960px; }
+            #thumbnails { width: 440px; float: left }
+            h1 { font-family: Verdana; color: #60b5cc; }
+        </style>
+    </head>
+
+    <body>
+        <div id="elm-area"></div>
+
+        <script src="elm.js"></script>
+        <script>
+            Elm.MeineHomepage.embed(document.getElementById("elm-area"));
+        </script>
+    </body>
+</html>
+```
+
+#### elm.js erzeugen
+
+Die Seite `index.html` benötigt die kompilierte elm Datei `elm.js`.
+
+```bash
+$ elm-make MeineHomepage.elm --output elm.js
+```
+
+

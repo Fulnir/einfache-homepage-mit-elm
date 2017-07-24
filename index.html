@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+    <head>
+      <meta charset="utf-8">
+      <meta name="author" content="Mr. X">
+      <meta name="keywords" content="Elm">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <title>Meine Homepage</title>
+        <style>
+            body { background-color: white; color: black; }
+            img { border: 1px solid white; margin: 5px; }
+            .large { width: 500px; float: right; }
+            .selected { margin: 0; border: 6px solid #60b5cc; }
+            .content { margin: 40px auto; width: 960px; }
+            #thumbnails { width: 440px; float: left }
+            h1 { font-family: Verdana; color: #60b5cc; }
+        </style>
+    </head>
+
+    <body>
+        <div id="elm-area"></div>
+
+        <script src="elm.js"></script>
+        <script>
+            Elm.MeineHomepage.embed(document.getElementById("elm-area"));
+        </script>
+    </body>
+</html>
